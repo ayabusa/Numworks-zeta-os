@@ -50,6 +50,9 @@ VECT_TBL = $(SRC_DIR)/vector_table.S
 AS_SRC   = $(SRC_DIR)/core.S
 C_SRC    = $(SRC_DIR)/main.c
 
+INCLUDE  =  -I./
+INCLUDE  += -I./device
+
 OBJS =  $(BUILD_DIR)/$(notdir $(VECT_TBL:.S=.o))
 OBJS += $(BUILD_DIR)/$(notdir $(AS_SRC:.S=.o))
 OBJS += $(BUILD_DIR)/$(notdir $(C_SRC:.c=.o))
