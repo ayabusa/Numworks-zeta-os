@@ -1,5 +1,9 @@
 #include "vector_table.h"
 #include <stddef.h>
+#include <stdint.h>
+#include "device/stm32f730xx.h"
+
+#define LED_PIN    (4) // PC0
 
 typedef void (*cxx_constructor)();
 
@@ -52,8 +56,19 @@ void __attribute__((noinline)) start() {
   size_t bssSectionLength = (&_bss_section_end_ram - &_bss_section_start_ram);
   memset_custom(&_bss_section_start_ram, 0, bssSectionLength);
 
+  // Enable the GPIOa and GPIOC peripheral in RCC.
+  RCC->AHB1ENR   |= RCC_AHB1ENR_GPIOBEN ;
+
+  // C0 is connected to the LED.
+  // It should be set to push-pull low-speed output.
+  GPIOB->MODER  &= ~(0x3 << (LED_PIN*2));
+  GPIOB->MODER  |=  (0x1 << (LED_PIN*2));
+  GPIOB->OTYPER &= ~(1 << LED_PIN);
+
+  GPIOB->ODR = (1 << LED_PIN);
+
   while (0)
   {
-    /* code */
+    GPIOB->ODR = (1 << LED_PIN);
   }
 }

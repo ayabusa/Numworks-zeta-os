@@ -2,7 +2,6 @@
 /*ENTRY(reset_handler)*/
 /* End of RAM / Start of stack */
 /* (4KB SRAM) */
-_estack = 0x20262144;
 
 /* epsilon stuff */
 STACK_SIZE = 32K;
@@ -83,6 +82,13 @@ SECTIONS
   .rodata : {
     *(.rodata)
     *(.rodata.*)
+  } >FLASH
+
+  .init_array : {
+    . = ALIGN(4);
+    _init_array_start = .;
+    KEEP (*(.init_array*))
+    _init_array_end = .;
   } >FLASH
 
   /* The 'data' section is space set aside in RAM for

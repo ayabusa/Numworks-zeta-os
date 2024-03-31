@@ -1,5 +1,5 @@
 #include "vector_table.h"
-extern const void * _estack;
+extern const void * _stack_start;
 
 /* Interrupt Service Routines are void->void functions */
 typedef void(*ISR)(void);
@@ -16,7 +16,7 @@ ISR InitialisationVector[INITIALISATION_VECTOR_SIZE]
   __attribute__((section(".isr_vector_table")))
   __attribute__((used))
   = {
-  (ISR)&_estack, // Stack start
+  (ISR)&_stack_start, // Stack start
   start, // Reset service routine,
   0, // NMI service routine,
   0, // HardFault service routine,
