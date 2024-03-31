@@ -10,6 +10,6 @@ This is a bare metal os attempt on the numworks n0110
 
 ## TODO
 - [x] Working thing
-- [ ] Led interface
+- [x] Led interface
 - [ ] Keyboard interface
 - [ ] Screen interface

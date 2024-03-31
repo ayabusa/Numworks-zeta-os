@@ -2,8 +2,9 @@
 #include <stddef.h>
 #include <stdint.h>
 #include "device/stm32f730xx.h"
+#include "Laplace/led.h"
 
-#define LED_PIN    (4) // PC0
+//#define LED_PIN    (4) // PB0
 
 typedef void (*cxx_constructor)();
 
@@ -42,6 +43,7 @@ void* memset_custom(void* ptr, int value, size_t num_bytes) {
     return ptr;
 }
 
+// This the first function when the os boot
 void __attribute__((noinline)) start() {
     /* Copy data section to RAM
   * The data section is R/W but its initialization value matters. It's stored
@@ -56,19 +58,22 @@ void __attribute__((noinline)) start() {
   size_t bssSectionLength = (&_bss_section_end_ram - &_bss_section_start_ram);
   memset_custom(&_bss_section_start_ram, 0, bssSectionLength);
 
-  // Enable the GPIOa and GPIOC peripheral in RCC.
+  // Enable the GPIO peripheral in RCC.
   RCC->AHB1ENR   |= RCC_AHB1ENR_GPIOBEN ;
-
-  // C0 is connected to the LED.
+  led_init();
+  set_led_green(true);
+  set_led_red(true);
+  /*
+  // B0 is connected to the LED.
   // It should be set to push-pull low-speed output.
   GPIOB->MODER  &= ~(0x3 << (LED_PIN*2));
   GPIOB->MODER  |=  (0x1 << (LED_PIN*2));
   GPIOB->OTYPER &= ~(1 << LED_PIN);
 
   GPIOB->ODR = (1 << LED_PIN);
-
+  */
   while (0)
   {
-    GPIOB->ODR = (1 << LED_PIN);
+    // code
   }
 }

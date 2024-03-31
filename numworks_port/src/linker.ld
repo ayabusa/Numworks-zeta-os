@@ -1,9 +1,11 @@
-/* Label for the program's entry point */
-/*ENTRY(reset_handler)*/
-/* End of RAM / Start of stack */
-/* (4KB SRAM) */
+/* This is the linker file it required to map out the memory.
+ * This linker is heavely inspired by epsilon/omega/upsilon and their bootloader_common.ld.
+ * It is necessary if we want our os to be considered as valid. 
+ * At this time we can only compile this os to slot B, but it might change in the future */
 
-/* epsilon stuff */
+
+
+/* numworks stuff */
 STACK_SIZE = 32K;
 FIRST_FLASH_SECTOR_SIZE = 4K;
 SIGNED_PAYLOAD_LENGTH = 8;
@@ -28,15 +30,18 @@ SECTIONS
     . = ORIGIN(FLASH) + SIGNED_PAYLOAD_LENGTH;
   } >FLASH
 
+  /* Contains some info and is requiered to be considered as a valid slot by the bootloader.
+   * Located in info_headers.cpp */
   .kernel_header : {
     KEEP(*(.kernel_header))
   } >FLASH
 
+  /* Nothing in there for now */
   .slot_info : {
     *(.slot_info*)
   } >RAM
 
-  /* The vector table goes at the start of flash. */
+  /* The vector table (handle all the interrupts) located in vector_table.cpp */
   .isr_vector_table ORIGIN(RAM) + 512 : AT(ORIGIN(FLASH) + SIZEOF(.signed_payload_prefix) + SIZEOF(.kernel_header)) {
     /* When booting, the STM32F412 fetches the content of address 0x0, and
      * extracts from it various key infos: the initial value of the PC register
@@ -57,6 +62,7 @@ SECTIONS
     _isr_vector_table_end_ram = .;
   } >RAM
 
+  /* this is to prevent the bootloader from booting straight up in our os (we set all to 0) */
   .exam_mode_buffer ORIGIN(FLASH) + SIZEOF(.signed_payload_prefix) + SIZEOF(.kernel_header) + SIZEOF(.isr_vector_table) : {
     . = ALIGN(4K);
     _exam_mode_buffer_start = .;
@@ -66,7 +72,8 @@ SECTIONS
     _exam_mode_buffer_end = .;
   } >FLASH
 
-  /* External flash memory */
+  /* Contains some more info and is requiered to be considered as a valid slot by the bootloader.
+   * Located in info_headers.cpp */
   .userland_header : {
     . = ORIGIN(FLASH) + USERLAND_OFFSET;
     KEEP(*(.userland_header));
@@ -77,6 +84,7 @@ SECTIONS
     *(.text)
     *(.text.*)
   } >FLASH
+
   /* The 'rodata' section contains read-only data,
    * constants, strings, information that won't change. */
   .rodata : {
@@ -84,6 +92,7 @@ SECTIONS
     *(.rodata.*)
   } >FLASH
 
+  /* TODO, understand what is it's purpose */
   .init_array : {
     . = ALIGN(4);
     _init_array_start = .;

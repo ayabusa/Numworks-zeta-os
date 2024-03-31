@@ -17,6 +17,8 @@
         "streambuf": "cpp",
         "system_error": "cpp",
         "tuple": "cpp",
-        "main.h": "c"
+        "main.h": "c",
+        "led.h": "c",
+        "stm32f730xx.h": "c"
     }
 }

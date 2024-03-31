@@ -50,18 +50,19 @@ LFLAGS += -mthumb
 LFLAGS += -Wall
 LFLAGS += --specs=nosys.specs
 LFLAGS += -nostdlib
-LFLAGS += -lgcc
 LFLAGS += -T$(LSCRIPT)
 
 # AS_SRC   = $(SRC_DIR)/core.S
 #C_SRC    = $(SRC_DIR)/main.c
-CPP_SRC := $(wildcard $(SRC_DIR)/*.cpp)
+CPP_SRC := $(wildcard $(SRC_DIR)/*.cpp) $(wildcard $(SRC_DIR)/Laplace/*.cpp)
+C_SRC := $(wildcard $(SRC_DIR)/*.c) $(wildcard $(SRC_DIR)/Laplace/*.c)
 
 INCLUDE  =  -I./
 INCLUDE  += -I./device
 
 #OBJS = $(BUILD_DIR)/$(notdir $(AS_SRC:.S=.o))
 #OBJS += $(BUILD_DIR)/$(notdir $(C_SRC:.c=.o))
+OBJS += $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(C_SRC))
 OBJS += $(patsubst $(SRC_DIR)/%.cpp, $(BUILD_DIR)/%.o, $(CPP_SRC))
 
 .PHONY: all
