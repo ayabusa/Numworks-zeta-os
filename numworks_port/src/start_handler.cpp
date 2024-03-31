@@ -2,7 +2,9 @@
 #include <stddef.h>
 #include <stdint.h>
 #include "device/stm32f730xx.h"
-#include "Laplace/led.h"
+extern "C" {
+  #include "main.h"
+}
 
 //#define LED_PIN    (4) // PB0
 
@@ -58,22 +60,6 @@ void __attribute__((noinline)) start() {
   size_t bssSectionLength = (&_bss_section_end_ram - &_bss_section_start_ram);
   memset_custom(&_bss_section_start_ram, 0, bssSectionLength);
 
-  // Enable the GPIO peripheral in RCC.
-  RCC->AHB1ENR   |= RCC_AHB1ENR_GPIOBEN ;
-  led_init();
-  set_led_green(true);
-  set_led_red(true);
-  /*
-  // B0 is connected to the LED.
-  // It should be set to push-pull low-speed output.
-  GPIOB->MODER  &= ~(0x3 << (LED_PIN*2));
-  GPIOB->MODER  |=  (0x1 << (LED_PIN*2));
-  GPIOB->OTYPER &= ~(1 << LED_PIN);
-
-  GPIOB->ODR = (1 << LED_PIN);
-  */
-  while (0)
-  {
-    // code
-  }
+  main_entry();
+  
 }

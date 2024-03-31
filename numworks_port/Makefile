@@ -87,5 +87,6 @@ $(BUILD_DIR)/$(TARGET).bin: $(BUILD_DIR)/$(TARGET).elf
 .PHONY: clean
 clean:
 	rm -f $(BUILD_DIR)/*.o
+	rm -f $(BUILD_DIR)/Laplace/*.o
 	rm -f $(BUILD_DIR)/$(TARGET).elf
 	rm -f $(BUILD_DIR)/$(TARGET).bin

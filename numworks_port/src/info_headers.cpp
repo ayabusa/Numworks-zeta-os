@@ -1,5 +1,5 @@
 #include <assert.h>
-#include <cstdint>
+#include <stdint.h>
 #include <stddef.h>
 
 #define byte4 0xFF, 0xFF, 0xFF, 0xFF

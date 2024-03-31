@@ -13,6 +13,7 @@
 
 #include <stdbool.h>
 #include "../device/stm32f730xx.h"
+#include "gpio_helper.h"
 
 void led_init();
 void set_led_red(bool state);
