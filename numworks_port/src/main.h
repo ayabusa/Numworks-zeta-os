@@ -9,6 +9,8 @@
 
 #include "Laplace/laplace.h"
 #include "Laplace/led.h"
+#include "Laplace/keyboard.h"
+#include "Laplace/time.h"
 
 void main_entry();
 

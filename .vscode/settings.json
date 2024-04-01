@@ -19,6 +19,8 @@
         "tuple": "cpp",
         "main.h": "c",
         "led.h": "c",
-        "stm32f730xx.h": "c"
+        "stm32f730xx.h": "c",
+        "keyboard.h": "c",
+        "gpio_helper.h": "c"
     }
 }

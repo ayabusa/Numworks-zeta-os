@@ -9,6 +9,7 @@
 
 #include "gpio_helper.h"
 #include "led.h"
+#include "keyboard.h"
 
 void laplace_init();
 

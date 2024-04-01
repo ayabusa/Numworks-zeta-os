@@ -17,6 +17,7 @@
 #define GPIO_E 4
 
 void set_output_pin(uint8_t gpio_x, uint8_t pin, bool state);
+bool read_input_pin(uint8_t gpio_x, uint8_t pin);
 void enable_gpio_x_rcc(uint8_t gpio_x);
 
 #endif

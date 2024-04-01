@@ -59,6 +59,34 @@ void set_output_pin(uint8_t gpio_x, uint8_t pin, bool state){
     }
 }
 
+bool read_input_pin(uint8_t gpio_x, uint8_t pin){
+    // Invert the IDR register since '0' means 'pressed'.
+    uint8_t idr_val = 0;
+    switch (gpio_x)
+    {
+    case GPIO_A:
+        idr_val = ~GPIOA->IDR;
+        break;
+    case GPIO_B:
+        idr_val = ~GPIOB->IDR;
+        break;
+    case GPIO_C:
+        idr_val = ~GPIOC->IDR;
+        break;
+    case GPIO_D:
+        idr_val = ~GPIOD->IDR;
+        break;
+    case GPIO_E:
+        idr_val = ~GPIOE->IDR;
+        break;
+    
+    default:
+        break;
+    }
+
+    return idr_val & (1 << pin);
+}
+
 void enable_gpio_x_rcc(uint8_t gpio_x){
     switch (gpio_x)
     {
