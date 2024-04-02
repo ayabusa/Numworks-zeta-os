@@ -90,3 +90,7 @@ clean:
 	rm -f $(BUILD_DIR)/Laplace/*.o
 	rm -f $(BUILD_DIR)/$(TARGET).elf
 	rm -f $(BUILD_DIR)/$(TARGET).bin
+
+.PHONY: flash
+flash:
+	dfu-util -a 0 -i 0 -s 0x90400000 -D build/main.bin
