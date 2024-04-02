@@ -9,14 +9,19 @@ LD_SCRIPT = $(SRC_DIR)/linker.ld
 MCU_SPEC  = cortex-m7
 
 # Toolchain definitions (ARM bare metal defaults)
-TOOLCHAIN = /usr
-CP = $(TOOLCHAIN)/bin/arm-none-eabi-g++
-CC = $(TOOLCHAIN)/bin/arm-none-eabi-gcc
-AS = $(TOOLCHAIN)/bin/arm-none-eabi-as
-LD = $(TOOLCHAIN)/bin/arm-none-eabi-ld
-OC = $(TOOLCHAIN)/bin/arm-none-eabi-objcopy
-OD = $(TOOLCHAIN)/bin/arm-none-eabi-objdump
-OS = $(TOOLCHAIN)/bin/arm-none-eabi-size
+ifeq ($(RUN_IN_GITHUB_ACTION),"TRUE")
+TOOLCHAIN = $(ARM_NONE_EABI_GCC_PATH)
+else
+TOOLCHAIN = /usr/bin
+endif
+
+CP = $(TOOLCHAIN)/arm-none-eabi-g++
+CC = $(TOOLCHAIN)/arm-none-eabi-gcc
+AS = $(TOOLCHAIN)/arm-none-eabi-as
+LD = $(TOOLCHAIN)/arm-none-eabi-ld
+OC = $(TOOLCHAIN)/arm-none-eabi-objcopy
+OD = $(TOOLCHAIN)/arm-none-eabi-objdump
+OS = $(TOOLCHAIN)/arm-none-eabi-size
 
 # Assembly directives.
 ASFLAGS += -c
