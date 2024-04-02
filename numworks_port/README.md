@@ -8,8 +8,15 @@ This is a bare metal os attempt on the numworks n0110
 4. you can flash it to slot B using the Web DFU from TI Planet, or by using the command ```make flash``` (unstable)
 5. That's it !
 
-## TODO
+## TODO/roadmap
+### Zeta bare minimum
 - [x] Working thing
 - [x] Led interface
 - [ ] Keyboard interface
+- [ ] Set clock and all
+    - [ ] adapt ms_wait() and us_wait()
 - [ ] Screen interface
+- [ ] UI toolkit
+    - [ ] text display
+    - [ ] fill rect
+    - [ ] image display
