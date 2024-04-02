@@ -10,18 +10,18 @@ MCU_SPEC  = cortex-m7
 
 # Toolchain definitions (ARM bare metal defaults)
 ifndef RUN_IN_GITHUB_ACTION
-TOOLCHAIN = /usr/bin# if make is run normally
+TOOLCHAIN = /usr/bin/# if make is run normally
 else
 TOOLCHAIN = $(ARM_NONE_EABI_GCC_PATH) # if run inside of a github action
 endif
 
-CP = $(TOOLCHAIN)/arm-none-eabi-g++
-CC = $(TOOLCHAIN)/arm-none-eabi-gcc
-AS = $(TOOLCHAIN)/arm-none-eabi-as
-LD = $(TOOLCHAIN)/arm-none-eabi-ld
-OC = $(TOOLCHAIN)/arm-none-eabi-objcopy
-OD = $(TOOLCHAIN)/arm-none-eabi-objdump
-OS = $(TOOLCHAIN)/arm-none-eabi-size
+CP = $(TOOLCHAIN)arm-none-eabi-g++
+CC = $(TOOLCHAIN)arm-none-eabi-gcc
+AS = $(TOOLCHAIN)arm-none-eabi-as
+LD = $(TOOLCHAIN)arm-none-eabi-ld
+OC = $(TOOLCHAIN)arm-none-eabi-objcopy
+OD = $(TOOLCHAIN)arm-none-eabi-objdump
+OS = $(TOOLCHAIN)arm-none-eabi-size
 
 # Assembly directives.
 ASFLAGS += -c
