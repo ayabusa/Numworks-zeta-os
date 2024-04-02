@@ -24,4 +24,4 @@ jobs:
 
     - name: build
       working-directory: ./numworks_port
-      run: make
+      run: make RUN_IN_GITHUB_ACTION=TRUE

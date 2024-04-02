@@ -9,10 +9,10 @@ LD_SCRIPT = $(SRC_DIR)/linker.ld
 MCU_SPEC  = cortex-m7
 
 # Toolchain definitions (ARM bare metal defaults)
-ifeq ($(RUN_IN_GITHUB_ACTION),"TRUE")
-TOOLCHAIN = $(ARM_NONE_EABI_GCC_PATH)
+ifndef RUN_IN_GITHUB_ACTION
+TOOLCHAIN = /usr/bin# if make is run normally
 else
-TOOLCHAIN = /usr/bin
+TOOLCHAIN = $(ARM_NONE_EABI_GCC_PATH) # if run inside of a github action
 endif
 
 CP = $(TOOLCHAIN)/arm-none-eabi-g++
