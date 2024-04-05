@@ -12,7 +12,7 @@ This is a bare metal os attempt on the numworks n0110
 ### Zeta bare minimum
 - [x] Working thing
 - [x] Led interface
-- [ ] Keyboard interface
+- [x] Keyboard interface
 - [ ] Set clock and all
     - [ ] adapt ms_wait() and us_wait()
 - [ ] Screen interface

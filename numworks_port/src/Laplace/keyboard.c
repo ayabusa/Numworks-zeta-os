@@ -41,6 +41,7 @@
 
 const uint8_t number_of_rows = 9;
 const uint8_t number_of_columns = 6;
+const char row_list[9] = {'B', 'A', 'C', 'D', 'E', 'F', 'G', 'H', 'I'};
 
 void keyboard_init(){
     for (int i = 0; i < number_of_rows; i++){
@@ -57,12 +58,6 @@ void keyboard_init(){
     }
 }
 
-bool keyboard_scan(){
-    set_output_pin(GPIO_A, 6, true);
-    bool key_state = read_input_pin(GPIO_C, 3);
-    return key_state; 
-    // A LOT TODO
-}
 
 void activate_row(uint8_t row_nb){
     // set all row to 0 and then reenable selected row
@@ -72,3 +67,21 @@ void activate_row(uint8_t row_nb){
     set_output_pin(GPIO_A, row_nb, false);
     us_wait(100);
 }
+
+struct button* keyboard_scan(){
+    static struct button result_button_list[54] = {};
+    uint8_t i = 0;
+    for(int r = 0; r < number_of_rows; r++){
+        activate_row(r);
+        
+        for(int c = 0; c < number_of_columns; c++){
+            bool key_state = read_input_pin(GPIO_C, c);
+            result_button_list[i].row = row_list[r];
+            result_button_list[i].column = c + 1;
+            result_button_list[i].state = key_state;
+            i++;
+        }
+    }
+    return result_button_list;
+}
+

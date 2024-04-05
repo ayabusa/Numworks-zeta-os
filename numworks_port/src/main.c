@@ -8,11 +8,17 @@ void main_entry(){
     set_led_green(true);
     while (1)
     {
-        /*if(keyboard_scan()){
-            set_led_green(true);
-        }else{
-            set_led_green(false);
-        }*/
+        struct button * keyboard_state = keyboard_scan();
+        for(int i =0; i < 54; i++){
+            if(keyboard_state[i].column == 4 && keyboard_state[i].row == 'H'){
+                if(keyboard_state[i].state){
+                    set_led_green(true);
+                }else{
+                    set_led_green(false);
+                }
+                break;
+            }
+        }
     }
     
 }
