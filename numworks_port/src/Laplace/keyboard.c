@@ -43,6 +43,8 @@ const uint8_t number_of_rows = 9;
 const uint8_t number_of_columns = 6;
 const char row_list[9] = {'B', 'A', 'C', 'D', 'E', 'F', 'G', 'H', 'I'};
 
+/* This should be called before accessing any other keyboard related feature
+   as it sets up all keyboard related peripherals */
 void keyboard_init(){
     for (int i = 0; i < number_of_rows; i++){
         // setup rows (output open drain)
@@ -58,7 +60,8 @@ void keyboard_init(){
     }
 }
 
-
+/* This disable the all the row except for the specified one
+   It is usefull to test if a specific key is pressed */
 void activate_row(uint8_t row_nb){
     // set all row to 0 and then reenable selected row
     for(int i =0; i < number_of_rows; i++){
@@ -68,6 +71,8 @@ void activate_row(uint8_t row_nb){
     us_wait(100);
 }
 
+/* Scans the current state of the keyboard and returns an array of buttons struct
+   You can find the button struct definition in keyboard.h */
 struct button* keyboard_scan(){
     static struct button result_button_list[54] = {};
     uint8_t i = 0;

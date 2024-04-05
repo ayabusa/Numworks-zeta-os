@@ -10,13 +10,17 @@
 #include "gpio_helper.h"
 
 struct button{
-	uint8_t column;
-	char row;
-	bool state;
+	uint8_t column; // ie: 2
+	char row; // ie: 'A'
+	bool state; // true is pressed and false released
 };
 
-
+/* This should be called before accessing any other keyboard related feature
+   as it sets up all keyboard related peripherals */
 void keyboard_init();
+
+/* Scans the current state of the keyboard and returns an array of buttons struct
+   You can find the button struct definition in keyboard.h */
 struct button* keyboard_scan();
 
 #endif

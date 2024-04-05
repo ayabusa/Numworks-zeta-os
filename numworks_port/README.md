@@ -17,6 +17,9 @@ This is a bare metal os attempt on the numworks n0110
     - [ ] adapt ms_wait() and us_wait()
 - [ ] Screen interface
 - [ ] UI toolkit
+    - [ ] set pixel
     - [ ] text display
     - [ ] fill rect
     - [ ] image display
+- [ ] File system
+    - [ ] Plan what to do

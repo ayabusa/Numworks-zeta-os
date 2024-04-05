@@ -6,17 +6,32 @@ void main_entry(){
     laplace_init();
     ms_wait(2000);
     set_led_green(true);
-    while (1)
-    {
+
+    // infinite loop
+    while (1){
         struct button * keyboard_state = keyboard_scan();
+        
         for(int i =0; i < 54; i++){
             if(keyboard_state[i].column == 4 && keyboard_state[i].row == 'H'){
+                if(keyboard_state[i].state){
+                    set_led_blue(true);
+                }else{
+                    set_led_blue(false);
+                }
+            }
+            if(keyboard_state[i].column == 3 && keyboard_state[i].row == 'H'){
                 if(keyboard_state[i].state){
                     set_led_green(true);
                 }else{
                     set_led_green(false);
                 }
-                break;
+            }
+            if(keyboard_state[i].column == 2 && keyboard_state[i].row == 'H'){
+                if(keyboard_state[i].state){
+                    set_led_red(true);
+                }else{
+                    set_led_red(false);
+                }
             }
         }
     }

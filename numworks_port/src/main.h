@@ -1,6 +1,6 @@
-/** @file led.h
+/** @file main.h
  * 
- * @brief Control the led
+ * @brief The main programm
  *
  */ 
 
@@ -12,6 +12,7 @@
 #include "Laplace/keyboard.h"
 #include "Laplace/time.h"
 
+/* our main function */
 void main_entry();
 
 #endif

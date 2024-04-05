@@ -21,6 +21,7 @@
         "led.h": "c",
         "stm32f730xx.h": "c",
         "keyboard.h": "c",
-        "gpio_helper.h": "c"
+        "gpio_helper.h": "c",
+        "stdint.h": "c"
     }
 }

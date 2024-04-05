@@ -11,6 +11,7 @@
 #include "led.h"
 #include "keyboard.h"
 
+/* Initialize all needed peripherals, should be called early in your program */
 void laplace_init();
 
 #endif
