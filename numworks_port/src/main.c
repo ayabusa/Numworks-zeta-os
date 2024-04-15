@@ -5,10 +5,10 @@ void main_entry(){
     // init all the peripherals
     laplace_init();
     ms_wait(2000);
-    set_led_green(true);
 
     // infinite loop
     while (1){
+        /*
         struct button * keyboard_state = keyboard_scan();
         
         for(int i =0; i < 54; i++){
@@ -26,13 +26,12 @@ void main_entry(){
                     set_led_green(false);
                 }
             }
-            if(keyboard_state[i].column == 2 && keyboard_state[i].row == 'H'){
-                if(keyboard_state[i].state){
-                    set_led_red(true);
-                }else{
-                    set_led_red(false);
-                }
-            }
+        }*/
+
+        if(get_key('G', 3)){
+            set_led_red(true);
+        }else{
+            set_led_red(false);
         }
     }
     

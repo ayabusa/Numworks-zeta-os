@@ -90,3 +90,14 @@ struct button* keyboard_scan(){
     return result_button_list;
 }
 
+/* Scans the specified key and return true if pressed 
+   It's more performant that scanning the whole keyboard */
+bool get_key(char row, uint8_t column){
+    for(int i = 0; i < number_of_rows; i++){
+        if(row==row_list[i]){
+            activate_row(i);
+            return(read_input_pin(GPIO_C, column));
+        }
+    }
+    return false;
+}

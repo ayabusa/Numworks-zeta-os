@@ -23,4 +23,8 @@ void keyboard_init();
    You can find the button struct definition in keyboard.h */
 struct button* keyboard_scan();
 
+/* Scans the specified key and return true if pressed 
+   It's more performant that scanning the whole keyboard */
+bool get_key(char row, uint8_t column);
+
 #endif
