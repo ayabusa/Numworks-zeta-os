@@ -10,4 +10,5 @@ void laplace_init(){
     enable_gpio_x_rcc(GPIO_C); //column (in)
     enable_gpio_x_rcc(GPIO_A); //row (out)
     keyboard_init();
+    init_clock();
 }

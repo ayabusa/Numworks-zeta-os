@@ -9403,6 +9403,7 @@ typedef struct
 #define RCC_PLLCFGR_PLLN_6                 (0x040UL << RCC_PLLCFGR_PLLN_Pos)    /*!< 0x00001000 */
 #define RCC_PLLCFGR_PLLN_7                 (0x080UL << RCC_PLLCFGR_PLLN_Pos)    /*!< 0x00002000 */
 #define RCC_PLLCFGR_PLLN_8                 (0x100UL << RCC_PLLCFGR_PLLN_Pos)    /*!< 0x00004000 */
+#define RCC_PLLCFGR_PLLN_384               (0x180UL << RCC_PLLCFGR_PLLN_Pos)    /*!< ? */
 #define RCC_PLLCFGR_PLLP_Pos               (16U)
 #define RCC_PLLCFGR_PLLP_Msk               (0x3UL << RCC_PLLCFGR_PLLP_Pos)      /*!< 0x00030000 */
 #define RCC_PLLCFGR_PLLP                   RCC_PLLCFGR_PLLP_Msk

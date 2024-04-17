@@ -10,6 +10,7 @@
 #include "gpio_helper.h"
 #include "led.h"
 #include "keyboard.h"
+#include "clock.h"
 
 /* Initialize all needed peripherals, should be called early in your program */
 void laplace_init();

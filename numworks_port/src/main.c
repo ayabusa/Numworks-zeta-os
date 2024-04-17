@@ -4,7 +4,6 @@
 void main_entry(){
     // init all the peripherals
     laplace_init();
-    ms_wait(2000);
 
     // infinite loop
     while (1){
@@ -27,12 +26,17 @@ void main_entry(){
                 }
             }
         }*/
-
+    /*
         if(get_key('G', 3)){
             set_led_red(true);
         }else{
             set_led_red(false);
-        }
+        }*/
+
+        set_led_red(true);
+        ms_wait(5000);
+        set_led_red(false);
+        ms_wait(5000);
     }
     
 }
