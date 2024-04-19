@@ -8,7 +8,7 @@
 #define TIME_H
 
 #define loops_per_microsecond 1
-#define loops_per_millisecond 960
+#define loops_per_millisecond 12000
 
 #include "stdint.h"
 

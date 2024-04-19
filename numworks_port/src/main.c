@@ -33,9 +33,9 @@ void main_entry(){
             set_led_red(false);
         }*/
 
-        set_led_red(true);
+        set_led_blue(true);
         ms_wait(5000);
-        set_led_red(false);
+        set_led_blue(false);
         ms_wait(5000);
     }
     

@@ -9,11 +9,7 @@
 
 #include "stdint.h"
 #include "../device/stm32f730xx.h"
-
-#define PLL_N 384
-#define PLL_M 8
-#define PLL_P 2
-#define PLL_Q 8
+#include "led.h"
 
 /*
 RCC->PLLCFGR  |=  0b00001000010000100110000000001000; // HSE: 8MHz*/

@@ -54,8 +54,32 @@ void init_clock(){
      * wait a little bit.
      * The spec tells us that at 2.8V and over 210MHz the flash expects 7 WS. */
     // clear in first place
-    FLASH->ACR &= ~(0b0000 0000 0000 0000
-                      0000 0011 0000 1111);
+    FLASH->ACR &= ~(FLASH_ACR_LATENCY_Msk | FLASH_ACR_PRFTEN | FLASH_ACR_ARTEN);
+    FLASH->ACR |= (FLASH_ACR_LATENCY_7WS | FLASH_ACR_PRFTEN | FLASH_ACR_ARTEN);
+
+    // 192MHz is too fast for both APB1 and APB2 so we divide them 
+    // firstly we clear
+    RCC->CFGR &= ~(0b00000000000000001111110000000000);
+    /* Then we set
+     * PPRE1 = 4 = 100
+     * PPRE2 = 2 = 10 */
+    RCC->CFGR |= 0b00000000000000001001010000000000;
+
+    // We now wait for PLLRDY
+    while (!(RCC->CR & RCC_CR_PLLRDY)) {};
+
+    // We select PLL output as a SYSCLK source
+    RCC->CFGR |= RCC_CFGR_SW_PLL;
+    // And wait for it !!!
+    while ((RCC->CFGR & RCC_CFGR_SWS_Msk) != RCC_CFGR_SWS_PLL) {};
+
+    // We can now disable HSI
+    RCC->CR &= ~(RCC_CR_HSION);
+
+    // Set normal speed
+    RCC->CFGR &= ~(RCC_CFGR_HPRE_Msk);
+
+    set_led_green(true);
 }
 
 /* OLD
