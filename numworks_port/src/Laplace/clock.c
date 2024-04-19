@@ -35,6 +35,27 @@ void init_clock(){
 
     // Now we can enable PLL
     RCC->CR |= RCC_CR_PLLON;
+
+    // Enable Overdrive (idk what it is) and wait
+    PWR->CR1 |= PWR_CR1_ODEN;
+    while (!(PWR->CSR1 & PWR_CSR1_ODRDY)) {};
+    // Same for ODSWEN
+    PWR->CR1 |= PWR_CR1_ODSWEN;
+    while (!(PWR->CSR1 & PWR_CSR1_ODSWRDY)) {};
+
+    // Select voltage scale (scale 1 = 0b11)
+    PWR->CR1 |= 0b00000000000000001100000000000000;
+    while (!(PWR->CSR1 & PWR_CSR1_VOSRDY)) {};
+
+    // Set Latency to 7 wait state (paragraph from Upsilon)
+    // Enable Prefetching, and ART
+    /* After reset the Flash runs as fast as the CPU. When we clock the CPU faster
+     * the flash memory cannot follow and therefore flash memory accesses need to
+     * wait a little bit.
+     * The spec tells us that at 2.8V and over 210MHz the flash expects 7 WS. */
+    // clear in first place
+    FLASH->ACR &= ~(0b0000 0000 0000 0000
+                      0000 0011 0000 1111);
 }
 
 /* OLD
