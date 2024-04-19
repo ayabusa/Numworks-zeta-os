@@ -24,6 +24,17 @@ void init_clock(){
     * SSCGEN = 1 */
     RCC->SSCGR = 0b10000000000000110010000011111010;
 
+    // clear PLL_M, PLL_N ,PLL_Q and PLLSRC in PLLCFGR
+    RCC->PLLCFGR &= ~(0b00001111010000000111111111111111);
+    // Set the specified value to PLLCFGR
+    /* PLL_M = 8 = 0b1000
+     * PLL_N = 384 = 0b110000000
+     * PLL_Q = 8 = 0b1000
+     * PLL_SRC = HSE = 1 */
+    RCC->PLLCFGR |= 0b00001000010000000110000000001000;
+
+    // Now we can enable PLL
+    RCC->CR |= RCC_CR_PLLON;
 }
 
 /* OLD
