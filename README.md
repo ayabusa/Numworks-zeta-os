@@ -1,6 +1,8 @@
 # Zeta (name that might change)
 This is a bare metal os attempt on the numworks n0110
 
+![image](/assets/image_post_numworks.jpg)
+
 ## Build
 1. Download the arm-none-eabi toolchain
 2. run ```make clean && make```
