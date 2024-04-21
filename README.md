@@ -1,37 +1,23 @@
-# Nucleo-bare-metal
-[WIP] my attempts to develop on my stm32 nuclo board
-## Building
-1. Install [gnu-arm-none-eabi](https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads) toolchain
-2. Clone the repo
-```
-git clone "https://github.com/ayabusa/Nucleo-bare-metal.git"
-cd Nucleo-bare-metal
-```
-3. Build the project (located in build/main.elf)
-```
-make all
-```
-## Running/Debuging
-```shell
-st-util                                 # Download at https://github.com/stlink-org/stlink, it launches the gdb server, port 4242
-gdb-multiarch main.elf                  # launch the gdb instance
-(gdb) target extended-remote :4242      # connect to the st-util server
-(gdb) load                              # load our binary
-(gdb) continue                          # run it
-```
-## Licence 
-```
-All Rights Reserved
+# Zeta (name that might change)
+This is a bare metal os attempt on the numworks n0110
 
-Copyright (c) 2024 ayabusa
+## Build
+1. Download the arm-none-eabi toolchain
+2. run ```make clean && make```
+3. the output file is located in build/main.bin
+4. you can flash it to slot B using the Web DFU from TI Planet, or by using the command ```make flash``` (unstable)
+5. That's it !
 
-Created by ayabusa
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-```
+## TODO/roadmap
+### Zeta bare minimum
+- [x] Working thing
+- [x] Led interface
+- [x] Keyboard interface
+- [x] Set clock and all
+    - [x] adapt ms_wait() and us_wait()
+- [ ] Screen interface
+- [ ] UI toolkit
+    - [ ] set pixel
+    - [ ] text display
+    - [ ] fill rect
+    - [ ] image display
