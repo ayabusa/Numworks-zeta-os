@@ -19,21 +19,19 @@ jobs:
     - uses: carlosperate/arm-none-eabi-gcc-action@v1
 
     - name: clean
-      working-directory: ./numworks_port
       run: make clean
 
     - name: build
-      working-directory: ./numworks_port
       run: make RUN_IN_GITHUB_ACTION=TRUE
 
     - name: Archive elf file
       uses: actions/upload-artifact@v4
       with:
         name: elf_file
-        path: numworks_port/build/main.elf
+        path: build/main.elf
         
     - name: Archive bin
       uses: actions/upload-artifact@v4
       with:
         name: bin_file
-        path: numworks_port/build/main.bin
+        path: build/main.bin
