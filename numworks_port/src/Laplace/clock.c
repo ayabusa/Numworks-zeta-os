@@ -79,7 +79,15 @@ void init_clock(){
     // Set normal speed
     RCC->CFGR &= ~(RCC_CFGR_HPRE_Msk);
 
-    set_led_green(true);
+    // UNSAFE CODE
+    // 23999<=>0b0101 1101 1011 1111
+    SysTick->LOAD &= ~(0b00000000111111111111111111111111);
+    SysTick->LOAD |= 0b00000000000000000101110110111111;
+    // set current
+    SysTick->VAL &= ~(0b00000000111111111111111111111111);
+    //set some things in CSR
+    SysTick->CTRL &= ~(0b00000000000000000000000000000111);
+    SysTick->CTRL |= 0b00000000000000000000000000000011;
 }
 
 /* OLD
