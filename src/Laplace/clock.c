@@ -1,4 +1,5 @@
 #include "clock.h"
+#include "../device/stm32f730xx.h"
 
 /* This should set the speed to 216MHz intead of just 48MHz */
 void init_clock(){
@@ -78,7 +79,7 @@ void init_clock(){
 
     // Set normal speed
     RCC->CFGR &= ~(RCC_CFGR_HPRE_Msk);
-
+    /*
     // UNSAFE CODE
     // 23999<=>0b0101 1101 1011 1111
     SysTick->LOAD &= ~(0b00000000111111111111111111111111);
@@ -87,7 +88,9 @@ void init_clock(){
     SysTick->VAL &= ~(0b00000000111111111111111111111111);
     //set some things in CSR
     SysTick->CTRL &= ~(0b00000000000000000000000000000111);
-    SysTick->CTRL |= 0b00000000000000000000000000000011;
+    SysTick->CTRL |= 0b00000000000000000000000000000011;*/
+
+    set_led_green(true);
 }
 
 /* OLD

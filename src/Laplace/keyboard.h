@@ -8,6 +8,7 @@
 #define KEYBOARD_H
 
 #include "gpio_helper.h"
+#include "time.h"
 
 struct button{
 	uint8_t column; // ie: 2

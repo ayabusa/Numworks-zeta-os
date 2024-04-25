@@ -47,6 +47,7 @@ CFLAGS += -g
 CFLAGS += -fmessage-length=0
 # (Set system to ignore semihosted junk)
 CFLAGS += --specs=nosys.specs
+CFLAGS += -O0
 
 # Linker directives.
 LSCRIPT = $(LD_SCRIPT)

@@ -11,6 +11,7 @@
 #include "Laplace/led.h"
 #include "Laplace/keyboard.h"
 #include "Laplace/time.h"
+#include "Laplace/clock.h"
 
 /* our main function */
 void main_entry();

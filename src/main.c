@@ -34,9 +34,9 @@ void main_entry(){
         }*/
 
         set_led_blue(true);
-        ms_wait(5000);
+        ms_wait(500);
         set_led_blue(false);
-        ms_wait(5000);
+        ms_wait(500);
     }
     
 }

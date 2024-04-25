@@ -7,8 +7,8 @@
 #ifndef CLOCK_H
 #define CLOCK_H
 
-#include "stdint.h"
 #include "../device/stm32f730xx.h"
+#include "stdint.h"
 #include "led.h"
 
 /*
