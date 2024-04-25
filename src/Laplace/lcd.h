@@ -8,10 +8,9 @@
 #define LCD_H
 
 #include <stdint.h>
+#include <stdbool.h>
 #include "../device/stm32f730xx.h"
 
-uint16_t volatile * const COMMAND_ADDRESS = (uint16_t *) 0x60000000;
-uint16_t volatile * const DATA_ADDRESS = (uint16_t *) 0x60020000;
 // to set them use : *COMMAND_ADDRESS = 0x1234;
 
 // define the differents command
@@ -35,6 +34,19 @@ uint16_t volatile * const DATA_ADDRESS = (uint16_t *) 0x60020000;
 #define POSITIVE_VOLTAGE_GAMMA_CONTROL 0xE0
 #define NEGATIVE_VOLTAGE_GAMMA_CONTROL 0xE1
 
+// rectangle frame from the LCD
+struct LCD_rectangle {
+  uint16_t x_start;
+  uint16_t y_start;
+  uint16_t x_end;
+  uint16_t y_end;
+};
+
 void lcd_init();
+void draw_color_rectangle(struct LCD_rectangle r);
+void send_command(uint16_t command);
+void send_data(uint16_t data);
+void set_drawing_area(struct LCD_rectangle r);
+void start_DMA_upload(uint16_t * src, bool incrementSrc, uint16_t length);
 
 #endif
